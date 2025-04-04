@@ -12,5 +12,7 @@ namespace ProductManagementBusiness.Interfaces.Services
     {
         Task<AuthResult> GenerateTokens(User user);
         Task<AuthResult> RefreshToken(string refreshToken);
+        bool IsTokenValid(string token);
+        void InvalidateToken(string token);
     }
 }

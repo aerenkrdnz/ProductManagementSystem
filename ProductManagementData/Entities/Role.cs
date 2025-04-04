@@ -9,5 +9,6 @@ namespace ProductManagementData.Entities
 {
     public class Role : IdentityRole
     {
+        public int RoleId { get; set; }
     }
 }

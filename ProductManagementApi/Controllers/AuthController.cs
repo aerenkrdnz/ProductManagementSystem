@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductManagementBusiness.Dtos.Auth;
 using ProductManagementBusiness.Interfaces.Managers;
@@ -36,6 +38,17 @@ namespace ProductManagementApi.Controllers
             var refreshToken = Request.Cookies["refreshToken"];
             var result = await _authManager.RefreshTokenAsync(refreshToken);
             return Ok(result);
+        }
+        [HttpPost("logout")]
+        [Authorize] 
+        public async Task<IActionResult> Logout()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            await _authManager.LogoutAsync(userId);
+
+            Response.Cookies.Delete("refreshToken");
+
+            return NoContent();
         }
     }
 }

@@ -1,0 +1,13 @@
+@use './variables' as *;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .container {
+    padding: 0 10px;
+  }
+}

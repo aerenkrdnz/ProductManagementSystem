@@ -15,18 +15,30 @@ namespace ProductManagementData.Context
         {
         }
 
-        public DbSet<Product> Products { get; set; }       
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            
+
             builder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
 
             builder.Entity<Role>().HasData(
-                new Role { Id = Guid.NewGuid().ToString(), Name = "Admin", NormalizedName = "ADMIN" },
-                new Role { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" }
+                new Role
+                {
+                    Id = "1",
+                    Name = "User",
+                    NormalizedName = "USER",
+                    RoleId = 1
+                },
+                new Role
+                {
+                Id = "2",
+                Name = "Admin",
+                NormalizedName = "ADMIN",
+                RoleId = 2 
+                }
             );
         }
     }

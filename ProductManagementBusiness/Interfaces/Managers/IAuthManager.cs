@@ -12,5 +12,6 @@ namespace ProductManagementBusiness.Interfaces.Managers
         Task<AuthResult> LoginAsync(LoginDto dto);
         Task<AuthResult> RegisterAsync(RegisterDto dto);
         Task<AuthResult> RefreshTokenAsync(string refreshToken);
+        Task LogoutAsync(string userId);
     }
 }

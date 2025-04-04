@@ -14,6 +14,7 @@ namespace ProductManagementBusiness.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
+        private readonly List<string> _invalidatedTokens = new();
 
         public AuthService(UserManager<User> userManager, IConfiguration configuration)
         {
@@ -74,5 +75,17 @@ namespace ProductManagementBusiness.Services
         {
             return Guid.NewGuid().ToString();
         }
+
+        public bool IsTokenValid(string token)
+        {
+            return !_invalidatedTokens.Contains(token);
+        }
+
+        public void InvalidateToken(string token)
+        {
+            _invalidatedTokens.Add(token);
+        }
+
+        
     }
 }

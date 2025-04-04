@@ -93,6 +93,7 @@ app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<TokenValidationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
